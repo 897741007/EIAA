@@ -262,6 +262,7 @@ class GAT_predictor(nn.Module):
         return cls_output
 
     def forward_(self, input_batch, adj_m):
+        # forward propagation without edge attention
         # parameter : input_batch ---> Atom information
         # parameter : adj_m ---> Adjacency matrix
         atom_embedding = self.atom_embedding_layer(input_batch)
