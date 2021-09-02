@@ -18,4 +18,4 @@ Which means an unidirectional link is set from super Node to all atoms
 
 # Requirement
 At least 24G GPU memory is required for a 6-layer model  
-If Edge-Attention is turned off, the demand for video memory is halved
+If Edge-Attention is turned off, the demand for GPU memory is halved
