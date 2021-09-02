@@ -43,9 +43,9 @@ if __name__ == '__main__':
             device = 'cuda'
             show_process = False
 
-            training_data_file = '../data/lipo/lipo_train_unnorm.csv'
-            valid_data_file = '../data/lipo/lipo_valid_unnorm.csv'
-            test_data_file = '../data/lipo/lipo_test_unnorm.csv'
+            training_data_file = 'data/lipo/lipo_train_unnorm.csv'
+            valid_data_file = 'data/lipo/lipo_valid_unnorm.csv'
+            test_data_file = 'data/lipo/lipo_test_unnorm.csv'
 
 
             model_trainer = trainer(task_name=task_id, model=None, epoch=epoch, batch_size=batch_size, lr=lr,
