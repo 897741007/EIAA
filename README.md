@@ -2,7 +2,7 @@
 Edge-Induced-Atoms-Attention
 
 # Atom attention
-Each Atom is represented by the weigthed sum of all linked atoms and itself
+Each Atom is represented by the weigthed sum of all linked atoms and itself  
 The attention weight between two atoms is induced by the linked bond  
 
 # Edge attention
