@@ -6,16 +6,19 @@ import torch
 from tqdm import tqdm
 
 class SMI_grapher():
-    def __init__(self, for_predictor=False, device='cuda', lower_aromatic=False, specify_bond=True):
-        # param : lower_aromatic --> if treat aromatic atom as the different, 
+    def __init__(self, for_predictor=False, device='cuda', lower_aromatic=False, specify_bond=True, cls_selfattention=False):
+        # param : lower_aromatic --> whether treat aromatic atom as the different, 
         #                            e.g. if True, the aromatic 'C' is represented in 'c'
-        # param : specify_bond --> if keep the feature of different type of bonds
+        # param : specify_bond --> whether keep the feature of different type of bonds
         #                            e.g. if False, all the bonds are regarded as a link
+        # param : cls_selfattention --> whether allow the self attention when upadte the [CLS]
+        #                            e.g. if False, the [CLS] could only update itself according to all nodes except itself and [PAD] nodes
         self.CLS = for_predictor
         self.device = device
         self.dict = {}
         self.lower_aromatic = lower_aromatic
         self.specify_bond = specify_bond
+        self.cls_selfattention = cls_selfattention
         if self.CLS:
             self.dict_size = len(self.dict) + 2
         else:
@@ -198,6 +201,8 @@ class SMI_grapher():
         c_adj_m = np.zeros((a+1, a+1), dtype=int)
         c_adj_m[1:,1:] = adj_m
         c_adj_m[0,1:org_len] = 1
+        if self.cls_selfattention:
+            c_adj_m[0,0] = 1
         c_atoms = [cls_id] + atoms
         c_ions = [0] + ions
         return c_adj_m, c_atoms, c_ions
